@@ -1,46 +1,40 @@
-#ask user for width and loop until they
-#enter a number that is more than zero
+# Function to check that number entered is more than zero
+def num_check(prompt):
+    error = "Please enter a number that is more than zero"
 
-def num_check():
+    while True:
+        try:
+            # Ask for a number with the custom prompt
+            response = float(input(prompt))
 
-    error = "Please enter numbers only" # in case user inputs letters
+            # Check if the number is valid
+            if response > 0:
+                return response
+            else:
+                print(error)
+        except ValueError:
+            print("Please enter numbers only")
 
-    while True:  #Infinite Loop (until values returned)
-        try: #run code
-            width=float(input("Enter width")) #asks for width
-            height = float(input("Enter height")) #asks for height
-
-            if width > 0 and height > 0: #check if values given are correct
-                return width, height #if correct, then return those values which would end the def function
-
-            elif width < 0 or height < 0: #checks if value is negative, which is invalid as area or perimeter can't be negative
-                print("width or height can't be negative") #prints error message if
-            else: # the only outcome left, is if the number is 0, so we don't use elif and use else directly
-                print("Please enter a number that is more than zero")
-
-        except ValueError: #except means that if this error happens, don't crash program and do this instead,
-                            # in this case value error happens when user types letters instead of numbers
-                print(error) #prints the appropriate error message
-
+# Main routine
 keep_going = ""
 
 while keep_going == "":
+    # Get width and height separately using the number checker
+    width = num_check("Enter width: ")
+    height = num_check("Enter height: ")
 
-    width, height= num_check() #uses the num check function to find the variables "width" and "height"
-
-    print(f"width is {width}") #prints the value returned by function
-    print(f"height is {height}") #prints the value returned by function
-
+    print(f"Width is {width}")
+    print(f"Height is {height}")
 
     area = width * height
     perimeter = 2 * (width + height)
 
-    print(f"the area is {area} units")
-    print(f"the perimeter is {perimeter} units")
+    print(f"The area is {area} units")
+    print(f"The perimeter is {perimeter} units")
 
-    keep_going = input("Press enter key to use again, or press any key, then enter to stop")
+    keep_going = input("Press Enter to use again, or type any key then Enter to stop: ")
 
-print("Thanks for using our simple program")
+print("Thanks for using our simple program!")
 
 
 
