@@ -1,60 +1,61 @@
-#ask user for width and loop until they
-#enter a number that is more than zero
-from xml.sax.handler import feature_namespaces
 
+# Function to check that number entered is more than zero
+def num_check(prompt):
+    error = "Please enter a number that is more than zero"
 
-def num_check():
+    while True:
+        try:
+            # Ask for a number with the custom prompt
+            response = float(input(prompt))
 
-    error = "Please enter numbers only" # in case user inputs letters
+            # Check if the number is valid
+            if response > 0:
+                return response
+            else:
+                print(error)
+        except ValueError:
+            print("Please enter numbers only")
 
-    while True:  #Infinite Loop (until values returned)
-        try: #run code
-            Length=float(input("Enter Length in meters")) #asks for Length
-            Width = float(input("Enter Width in meters")) #asks for Width
-
-            if Length > 0 and Width > 0: #check if values given are correct
-                return Length, Width #if correct, then return those values which would end the def function
-
-            elif Length < 0 or Width < 0: #checks if value is negative, which is invalid as area or perimeter can't be negative
-                print("Length or Width can't be negative") #prints error message if
-            else: # the only outcome left, is if the number is 0, so we don't use elif and use else directly
-                print("Please enter a number that is more than zero")
-
-        except ValueError: #except means that if this error happens, don't crash program and do this instead,
-                            # in this case value error happens when user types letters instead of numbers
-                print(error) #prints the appropriate error message
-
-while True:
-    CostOfFencing = float(input("Enter cost of fencing per meter"))
-    if CostOfFencing == 0:
-        print("Lucky you! getting it for free I see.")
-        break
-    elif CostOfFencing < 0:
-        print("Please enter a valid cost")
-    else:
-        break
-
+# Main routine
 keep_going = ""
 
 while keep_going == "":
+    # Get width and height separately using the number checker
+    width = num_check("Enter Width: ")
+    length = num_check("Enter Length: ")
 
-    Length, Width= num_check() #uses the num check function to find the variables "width" and "height"
+    print(f"Width is {width}")
+    print(f"Length is {length}")
 
-    print(f"width is {Width}") #prints the value returned by function
-    print(f"length is {Length}") #prints the value returned by function
+    while True:
+        try:
+            CostOfFencing = float(input("Enter cost of fencing per meter: "))
+            if CostOfFencing == 0:
+                print("Lucky you! getting it done for free I see!")
+                break
+            elif CostOfFencing < 0:
+                print("Please enter a valid cost")
+            else:
+                break
+        except ValueError:
+            print("Please enter a number")
 
 
-    perimeter = 2 * (Length + Width)
+
+    perimeter = 2 * (width + length)
 
     print(f"the perimeter is {perimeter} meters")
 
-    costoffencing= perimeter/CostOfFencing
+    costoffencing = perimeter * CostOfFencing
 
     print(f"The cost of fencing your area is {costoffencing}")
 
     keep_going = input("Press enter key to use again, or press any key, then enter to stop")
 
-print("Thanks for using our simple program")
+
+print("Thank you for using the calculator")
+
+
 
 
 
