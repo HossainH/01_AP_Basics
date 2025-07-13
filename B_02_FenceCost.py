@@ -48,7 +48,7 @@ while keep_going == "":
 
     costoffencing = perimeter * CostOfFencing
 
-    print(f"The cost of fencing your area is {costoffencing:,.2f}")
+    print(f"The cost of fencing your area is ${costoffencing:,.2f}")
 
     keep_going = input("Press enter key to use again, or press any key, then enter to stop")
 
